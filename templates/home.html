@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      font-family: 'Hansief', sans-serif;
+      background-color: #000;
+      color: #fff; /* Change text color to white */
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #000; /* Change container background color to black */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Change box shadow color to white */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      font-family: 'Georgia', serif;
+      text-align: center;
+      width: 100%;
+    }
+
+    form {
+      text-align: center;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    form div {
+      width: 45%;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      background-color: #333; /* Change input background color to dark gray */
+      color: #fff; /* Change input text color to white */
+    }
+
+    button[type="submit"] {
+      width: 25%;
+      padding: 10px;
+      margin: 10px auto;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    p {
+      font-family: 'Georgia', serif;
+      text-align: center;
+      width: 100%;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Lung Cancer Prediction</h1>
+    <p>Insert the gene expression values of the following genes:</p>
+
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+        <div>
+            <input type="text" name="FCN1" placeholder="FCN1" required="required" /><br>
+            <input type="text" name="PTX3" placeholder="PTX3" required="required" /><br>
+            <input type="text" name="CCL2" placeholder="CCL2" required="required" /><br>
+            <input type="text" name="IFNGR1" placeholder="IFNGR1" required="required" /><br>
+            <input type="text" name="CADM1" placeholder="CADM1" required="required" /><br>
+            <input type="text" name="TIMP3" placeholder="TIMP3" required="required" /><br>
+            <input type="text" name="A2M" placeholder="A2M" required="required" /><br>
+            <input type="text" name="SEPP1" placeholder="SEPP1" required="required" /><br>
+        </div>
+        <div>
+            <input type="text" name="C1S" placeholder="C1S" required="required" /><br>
+            <input type="text" name="CFB" placeholder="CFB" required="required" /><br>
+            <input type="text" name="AIM2" placeholder="AIM2" required="required" /><br>
+            <input type="text" name="IGFBP2" placeholder="IGFBP2" required="required" /><br>
+            <input type="text" name="STAT1" placeholder="STAT1" required="required" /><br>
+            <input type="text" name="SCD" placeholder="SCD" required="required" /><br>
+            <input type="text" name="BNIP3" placeholder="BNIP3" required="required" /><br>
+            <input type="text" name="DDIT4" placeholder="DDIT4" required="required" /><br>
+        </div>
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+    <br>
+    <br>
+
+    {% if prediction_text == 'Lung Cancer Prediction 1' %}
+      <p>The patient has lung cancer.</p>
+    {% elif prediction_text == 'Lung Cancer Prediction 0' %}
+      <p>The patient does not have lung cancer.</p>
+    {% else %}
+      <p>No prediction available.</p>
+    {% endif %}
+
+  </div>
+</body>
+
+</html>
